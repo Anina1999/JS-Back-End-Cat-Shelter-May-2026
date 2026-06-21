@@ -4,8 +4,8 @@
   "description": "SoftUni JS Back-End Course Workshop",
   "main": "index.js",
   "scripts": {
-    "start": "node src/idex.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node src/index.js",
+    "dev": "node --watch src/index.js"
   },
   "repository": {
     "type": "git",

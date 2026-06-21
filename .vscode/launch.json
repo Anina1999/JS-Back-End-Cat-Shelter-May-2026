@@ -1,0 +1,17 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "App Debug",
+      "program": "${workspaceFolder}/src/index.js",
+      "request": "launch",
+      "skipFiles": [
+        "<node_internals>/**"
+      ],
+      "type": "node",
+      "runtimeArgs": [
+        "--watch"
+      ]
+    }
+  ]
+}
