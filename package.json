@@ -1,0 +1,22 @@
+{
+  "name": "js-back-end-cat-shelter-may-2026",
+  "version": "1.0.0",
+  "description": "SoftUni JS Back-End Course Workshop",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/idex.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Anina1999/JS-Back-End-Cat-Shelter-May-2026.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/Anina1999/JS-Back-End-Cat-Shelter-May-2026/issues"
+  },
+  "homepage": "https://github.com/Anina1999/JS-Back-End-Cat-Shelter-May-2026#readme"
+}
