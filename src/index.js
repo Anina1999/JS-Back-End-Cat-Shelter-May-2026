@@ -1,5 +1,7 @@
 import http from 'http';
 import fs from 'fs/promises';
+import cats from './cats.js'
+import { renderHomePage } from './controllers/homeController.js';
 
 const server = http.createServer(async (req, res) => {
     if (req.url === '/content/styles/site.css') {
@@ -18,10 +20,13 @@ const server = http.createServer(async (req, res) => {
         return res.end();
     }
 
+    
+
     let htmlContent = '';
-    res.writeHead(200, { 'Content-Type': 'text/html'})
+    res.writeHead(200, { 'Content-Type': 'text/html' });
+
     if (req.url === '/') {
-        htmlContent = await fs.readFile('./src/views/home/index.html', 'utf-8');
+        htmlContent = await renderHomePage(req, res);
     } else if (req.url === '/cats/add-breed') {
         htmlContent = await fs.readFile('./src/views/addBreed.html', 'utf-8');
     } else if (req.url === '/cats/add-cat') {

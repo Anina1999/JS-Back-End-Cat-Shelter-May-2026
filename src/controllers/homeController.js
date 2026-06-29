@@ -1,0 +1,24 @@
+import fs from 'fs/promises';
+import cats from '../cats.js'
+
+export async function renderHomePage(req, res) {
+    const htmlContent = await fs.readFile('./src/views/home/index.html', 'utf-8');
+
+    const catTemplate = (cat) => `
+        <li>
+            <img src="${cat.imageUrl}" alt="${cat.name}">
+            <h3>${cat.name}</h3>
+            <p><span>Breed: </span>${cat.breed}</p>
+            <p><span>Description: </span>${cat.description}</p>
+            <ul class="buttons">
+                <li class="btn edit"><a href="">Change Info</a></li>
+                <li class="btn delete"><a href="">New Home</a></li>
+            </ul>
+        </li>
+    `;
+
+    const catsContent = `<ul>${cats.map(cat => catTemplate(cat)).join('\n')}</ul>`
+
+    const result = htmlContent.replace('{{cats}}', catsContent);
+    return result;
+}
