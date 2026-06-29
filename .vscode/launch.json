@@ -3,6 +3,7 @@
   "configurations": [
     {
       "name": "App Debug",
+      "cwd": "${workspaceFolder}",
       "program": "${workspaceFolder}/src/index.js",
       "request": "launch",
       "skipFiles": [
