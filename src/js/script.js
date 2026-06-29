@@ -1,0 +1,1 @@
+console.log('Script loaded in the browser context');
