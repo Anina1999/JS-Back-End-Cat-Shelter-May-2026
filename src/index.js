@@ -4,6 +4,7 @@ import cats from './cats.js'
 import { renderHomePage } from './controllers/homeController.js';
 import breeds from './breeds.js';
 import { addBreed, readBreeds } from './breedService.js';
+import { renderAddCatPage } from './controllers/addCatController.js';
 
 const server = http.createServer(async (req, res) => {
     console.log(readBreeds());
@@ -44,11 +45,11 @@ const server = http.createServer(async (req, res) => {
     res.writeHead(200, { 'Content-Type': 'text/html' });
 
     if (req.url === '/') {
-        htmlContent = await renderHomePage(req, res);
+        htmlContent = await renderHomePage();
     } else if (req.url === '/cats/add-breed') {
         htmlContent = await fs.readFile('./src/views/addBreed.html', 'utf-8');
     } else if (req.url === '/cats/add-cat') {
-        htmlContent = await fs.readFile('./src/views/addCat.html', 'utf-8');
+        htmlContent = await renderAddCatPage();
     } else {
         htmlContent = await fs.readFile('./src/views/notFound.html', 'utf-8');
     }

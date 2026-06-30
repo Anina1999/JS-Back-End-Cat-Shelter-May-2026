@@ -1,7 +1,7 @@
 import fs from 'fs/promises';
 import cats from '../cats.js'
 
-export async function renderHomePage(req, res) {
+export async function renderHomePage() {
     const htmlContent = await fs.readFile('./src/views/home/index.html', 'utf-8');
 
     const catTemplate = (cat) => `
