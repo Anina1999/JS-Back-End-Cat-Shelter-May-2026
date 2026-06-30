@@ -4,23 +4,34 @@ import cats from './cats.js'
 import { renderHomePage } from './controllers/homeController.js';
 import breeds from './breeds.js';
 import { addBreed, readBreeds } from './breedService.js';
+import { addCat, readCats } from './catService.js';
 import { renderAddCatPage } from './controllers/addCatController.js';
+import { resolve } from 'dns';
+import { readBodyFormData } from './utility/readBodyFormData.js';
 
 const server = http.createServer(async (req, res) => {
-    console.log(readBreeds());
+    console.log(readCats());
     if (req.method === 'POST' && req.url === '/cats/add-breed') {
-        let body = '';
-        req.on('data', (chunk) => {
-            body += chunk;
-        })
+        const bodyFormData = await readBodyFormData(req);
 
-        req.on('end', async () => {
-            const formData = new URLSearchParams(body);
-            const breedName = formData.get('breed');
-            addBreed(breedName);
-        });
+        addBreed(bodyFormData.get('breed'));
 
         return res.writeHead(302, { Location: '/' }).end();
+    }
+
+    if (req.method === 'POST' && req.url === '/cats/add-cat') {
+        const bodyFormData = await readBodyFormData(req);
+
+        const newCat = {
+            name: bodyFormData.get('name'),
+            description: bodyFormData.get('description'),
+            imageUrl: bodyFormData.get('imageUrl'),
+            breedId: bodyFormData.get('breed')
+        };
+
+        addCat(newCat);
+
+        return res.writeHead(302, { Location: '/'}).end();
     }
 
     if (req.url === '/content/styles/site.css') {
