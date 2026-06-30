@@ -18,5 +18,8 @@
   "bugs": {
     "url": "https://github.com/Anina1999/JS-Back-End-Cat-Shelter-May-2026/issues"
   },
-  "homepage": "https://github.com/Anina1999/JS-Back-End-Cat-Shelter-May-2026#readme"
+  "homepage": "https://github.com/Anina1999/JS-Back-End-Cat-Shelter-May-2026#readme",
+  "dependencies": {
+    "uuid": "^14.0.1"
+  }
 }
