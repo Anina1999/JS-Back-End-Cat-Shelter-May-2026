@@ -9,9 +9,9 @@ import { renderAddCatPage } from './controllers/addCatController.js';
 import { resolve } from 'dns';
 import { readBodyFormData } from './utility/readBodyFormData.js';
 import { renderEditCatPage } from './controllers/editCatController.js';
+import { renderNotFoundPage } from './utility/renderNotFoundPage.js';
 
 const server = http.createServer(async (req, res) => {
-    console.log(readCats());
     if (req.method === 'POST' && req.url === '/cats/add-breed') {
         const bodyFormData = await readBodyFormData(req);
 
@@ -63,9 +63,10 @@ const server = http.createServer(async (req, res) => {
     } else if (req.url === '/cats/add-cat') {
         htmlContent = await renderAddCatPage();
     } else if (req.url.startsWith('/cats/edit-cat/')) {
-        htmlContent = await renderEditCatPage();
+        const catId = req.url.split('/').pop();
+        htmlContent = await renderEditCatPage(catId);
     } else {
-        htmlContent = await fs.readFile('./src/views/notFound.html', 'utf-8');
+        htmlContent = await renderNotFoundPage();
     }
 
     res.write(htmlContent);

@@ -16,3 +16,7 @@ export function addCat(catData) {
 
     cats.push(newCat);
 }
+
+export function getCatById(catId) {
+    return cats.find(cat => cat.id === catId);
+}
