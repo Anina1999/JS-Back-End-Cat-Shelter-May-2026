@@ -8,6 +8,7 @@ import { addCat, readCats } from './catService.js';
 import { renderAddCatPage } from './controllers/addCatController.js';
 import { resolve } from 'dns';
 import { readBodyFormData } from './utility/readBodyFormData.js';
+import { renderEditCatPage } from './controllers/editCatController.js';
 
 const server = http.createServer(async (req, res) => {
     console.log(readCats());
@@ -61,6 +62,8 @@ const server = http.createServer(async (req, res) => {
         htmlContent = await fs.readFile('./src/views/addBreed.html', 'utf-8');
     } else if (req.url === '/cats/add-cat') {
         htmlContent = await renderAddCatPage();
+    } else if (req.url.startsWith('/cats/edit-cat/')) {
+        htmlContent = await renderEditCatPage();
     } else {
         htmlContent = await fs.readFile('./src/views/notFound.html', 'utf-8');
     }
