@@ -26,7 +26,7 @@ const server = http.createServer(async (req, res) => {
             name: bodyFormData.get('name'),
             description: bodyFormData.get('description'),
             imageUrl: bodyFormData.get('imageUrl'),
-            breedId: bodyFormData.get('breed')
+            breed: bodyFormData.get('breed')
         };
 
         addCat(newCat);

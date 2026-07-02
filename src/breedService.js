@@ -13,3 +13,7 @@ export function addBreed(breedName) {
 
     breeds.push(newBreed);
 }
+
+export function getBreedById(breedId) {
+    return breeds.find(breed => breed.id === breedId);
+}

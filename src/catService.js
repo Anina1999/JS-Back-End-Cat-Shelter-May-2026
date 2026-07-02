@@ -1,3 +1,4 @@
+import { getBreedById } from './breedService.js';
 import cats from './cats.js';
 import { v4 } from 'uuid';
 
@@ -6,9 +7,11 @@ export function readCats() {
 }
 
 export function addCat(catData) {
+    const breedName = getBreedById(catData.breed)?.name || 'Unknown breed';
     const newCat = {
         id: v4(),
-        ... catData
+        ... catData,
+        breed: breedName,
     };
 
     cats.push(newCat);

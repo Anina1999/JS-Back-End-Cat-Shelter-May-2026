@@ -1,6 +1,6 @@
 const cats = [
   {
-    id: 1,
+    id: '1',
     name: "Lukcho",
     breed: "Bombay Cat",
     description: "Dominant and aggressive to other cats. Will probably eat you in your sleep. Very cute tho.",
@@ -8,7 +8,7 @@ const cats = [
     price: null
   },
   {
-    id: 2,
+    id: '2',
     name: "Gabriel",
     breed: "Bombay Cat",
     description: "Dominant and aggressive to other cats. Will probably eat you in your sleep. Very cute tho.",
@@ -16,7 +16,7 @@ const cats = [
     price: null
   },
   {
-    id: 3,
+    id: '3',
     name: "Tyler",
     breed: "Bombay Cat",
     description: "Dominant and aggressive to other cats. Will probably eat you in your sleep. Very cute tho.",
@@ -24,7 +24,7 @@ const cats = [
     price: null
   },
   {
-    id: 4,
+    id: '4',
     name: "Milla",
     breed: "Bombay Cat",
     description: "Dominant and aggressive to other cats. Will probably eat you in your sleep. Very cute tho.",
@@ -32,7 +32,7 @@ const cats = [
     price: 350
   },
   {
-    id: 5,
+    id: '5',
     name: "Brenda",
     breed: "Bombay Cat",
     description: "Dominant and aggressive to other cats. Will probably eat you in your sleep. Very cute tho.",
