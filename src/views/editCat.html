@@ -31,8 +31,8 @@
             <label for="image">Image</label>
             <input type="url" name="imageUrl" id="image" value="{{imageUrl}}">
             <label for="group">Breed</label>
-            <select id="group">
-                <option value="Fluffy Cat">Fluffy Cat</option>
+            <select name="breed" id="group">
+                {{breedOptions}}
             </select>
             <button>Edit Cat</button>
         </form>
