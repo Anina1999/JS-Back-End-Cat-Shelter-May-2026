@@ -4,12 +4,13 @@ import cats from './cats.js'
 import { renderHomePage } from './controllers/homeController.js';
 import breeds from './breeds.js';
 import { addBreed, readBreeds } from './breedService.js';
-import { addCat, editCat, getCatById, readCats } from './catService.js';
+import { addCat, deleteCat, editCat, getCatById, readCats } from './catService.js';
 import { renderAddCatPage } from './controllers/addCatController.js';
 import { resolve } from 'dns';
 import { readBodyFormData } from './utility/readBodyFormData.js';
 import { renderEditCatPage } from './controllers/editCatController.js';
 import { renderNotFoundPage } from './utility/renderNotFoundPage.js';
+import { renderNewHomePage } from './controllers/newHomePage.js';
 
 const server = http.createServer(async (req, res) => {
     if (req.method === 'POST' && req.url === '/cats/add-breed') {
@@ -49,6 +50,13 @@ const server = http.createServer(async (req, res) => {
         return res.writeHead(302, { Location: '/' }).end();
     }
 
+        if (req.method === 'POST' && req.url.startsWith('/cats/new-home')) {
+        const catId = req.url.split('/').pop();
+        deleteCat(catId);
+
+        return res.writeHead(302, { Location: '/' }).end();
+    }
+
     if (req.url === '/content/styles/site.css') {
         const cssContent = await fs.readFile('./src/content/styles/site.css', 'utf-8');
 
@@ -79,6 +87,9 @@ const server = http.createServer(async (req, res) => {
     } else if (req.url.startsWith('/cats/edit-cat/')) {
         const catId = req.url.split('/').pop();
         htmlContent = await renderEditCatPage(catId);
+    } else if (req.url.startsWith('/cats/new-home/')) {
+        const catId = req.url.split('/').pop();
+        htmlContent = await renderNewHomePage(catId);
     } else {
         htmlContent = await renderNotFoundPage();
     }
