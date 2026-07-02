@@ -18,9 +18,10 @@ export async function renderHomePage(filter = {}) {
     `;
 
     const cats = readCats(filter);
-
     const catsContent = `<ul>${cats.map(cat => catTemplate(cat)).join('\n')}</ul>`
 
-    const result = htmlContent.replace('{{cats}}', catsContent);
+    const result = htmlContent.replace('{{cats}}', catsContent)
+        .replace('{{name}}', filter.name || '');
+
     return result;
 }
