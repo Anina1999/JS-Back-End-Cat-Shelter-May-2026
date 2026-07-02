@@ -4,7 +4,7 @@ import cats from './cats.js'
 import { renderHomePage } from './controllers/homeController.js';
 import breeds from './breeds.js';
 import { addBreed, readBreeds } from './breedService.js';
-import { addCat, readCats } from './catService.js';
+import { addCat, editCat, getCatById, readCats } from './catService.js';
 import { renderAddCatPage } from './controllers/addCatController.js';
 import { resolve } from 'dns';
 import { readBodyFormData } from './utility/readBodyFormData.js';
@@ -33,6 +33,20 @@ const server = http.createServer(async (req, res) => {
         addCat(newCat);
 
         return res.writeHead(302, { Location: '/'}).end();
+    }
+
+    if (req.method === 'POST' && req.url.startsWith('/cats/edit-cat')) {
+        const catId = req.url.split('/').pop();
+        const editedCat = await readBodyFormData(req);
+
+        editCat(catId, {
+            name: editedCat.get('name'),
+            description: editedCat.get('description'),
+            imageUrl: editedCat.get('imageUrl'),
+            breed: editedCat.get('breed')
+        })
+
+        return res.writeHead(302, { Location: '/' }).end();
     }
 
     if (req.url === '/content/styles/site.css') {
