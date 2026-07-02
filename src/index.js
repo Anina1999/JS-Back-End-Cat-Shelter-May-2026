@@ -80,6 +80,11 @@ const server = http.createServer(async (req, res) => {
 
     if (req.url === '/') {
         htmlContent = await renderHomePage();
+    } else if (req.url.startsWith('/search')) {
+        const urlParams = new URLSearchParams(req.url.split('?')[1]);
+        const name = urlParams.get('name');
+
+        htmlContent = await renderHomePage({ name });
     } else if (req.url === '/cats/add-breed') {
         htmlContent = await fs.readFile('./src/views/addBreed.html', 'utf-8');
     } else if (req.url === '/cats/add-cat') {

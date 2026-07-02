@@ -1,7 +1,7 @@
 import fs from 'fs/promises';
 import { readCats } from '../catService.js';
 
-export async function renderHomePage() {
+export async function renderHomePage(filter = {}) {
     const htmlContent = await fs.readFile('./src/views/home/index.html', 'utf-8');
 
     const catTemplate = (cat) => `
@@ -17,7 +17,8 @@ export async function renderHomePage() {
         </li>
     `;
 
-    const cats = readCats();
+    const cats = readCats(filter);
+
     const catsContent = `<ul>${cats.map(cat => catTemplate(cat)).join('\n')}</ul>`
 
     const result = htmlContent.replace('{{cats}}', catsContent);
